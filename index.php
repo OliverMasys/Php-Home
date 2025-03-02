@@ -1,3 +1,31 @@
+<?php
+// setup connection details
+$dsn = "mysql:
+        host=localhost;
+        dbname=adv_php;
+        charset=utf8;
+        port=3306";
+
+$username = "JimBelushi@mywebtraining.net";  // FTP username
+$password = "adpujdB734kf3";  // FTP password
+        
+
+// create new PDO connection object with error messaging turned on
+try {
+  $pdo = new PDO($dsn, "adv_php_user", "Secret", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+  echo " Database connection successful!";
+} catch (PDOException $e) {
+  die (" Database connection failed: " . $e->getMessage());
+}
+// create the db query in the PDO and assign it to a variable
+$stmt = $pdo->query("SELECT * FROM `products`");
+
+// run the query using the PDO connection and return the result to a variable
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
